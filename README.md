@@ -6,7 +6,7 @@ Projeto de correção da Avaliação Trimestral do 2TRI. **Turma:** 2EMIA
 
 ```C#
 public Form1()
-        {
-            InitializeComponent();
-        }
-        ```
+{
+	InitializeComponent();
+}
+ ```
