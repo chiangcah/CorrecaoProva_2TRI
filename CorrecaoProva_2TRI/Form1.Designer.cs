@@ -182,9 +182,9 @@
             this.Controls.Add(this.lblVitorias);
             this.Controls.Add(this.lblRodada);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Correção Prova - 2TRI";
+            this.Text = "Pedra, Papel e Tesoura";
             this.ResumeLayout(false);
             this.PerformLayout();
 
