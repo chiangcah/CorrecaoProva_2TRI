@@ -61,10 +61,10 @@ namespace CorrecaoProva_2TRI
             if (ChecarJogadaValida())
             {
                 lblJogadaSelecionada.Text = string.Format(
-                    "Jogada Selecionada: {0}",
-                    jogadas[jogadaSelecionada - 1] 
-                    //subtrai um para coincidir com os valores da Array jogadas
-                ); 
+                "Jogada Selecionada: {0}",
+                jogadas[jogadaSelecionada - 1] 
+                //subtrai um para coincidir com os valores da Array jogadas
+            ); 
             }
             else
             {
