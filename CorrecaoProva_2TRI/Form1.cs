@@ -20,8 +20,16 @@ namespace CorrecaoProva_2TRI
             3 = Tesoura;             
         */
 
-        int jogadaSelecionada = 0,
-            rodada = 1,
+        Jogadas jogadaSelecionada = Jogadas.NENHUMA;
+        enum Jogadas
+        {
+            NENHUMA,
+            Pedra,
+            Papel,
+            Tesoura
+        }
+
+        int rodada = 1,
             empates = 0,
             derrotas = 0,
             vitorias = 0;
@@ -33,6 +41,7 @@ namespace CorrecaoProva_2TRI
             "Tesoura" //2
         };
 
+
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +49,7 @@ namespace CorrecaoProva_2TRI
 
         private bool ChecarJogadaValida()
         {
-            return jogadaSelecionada > 0;
+            return jogadaSelecionada != Jogadas.NENHUMA;
         }
 
         private void AvancarRodada()
@@ -62,7 +71,7 @@ namespace CorrecaoProva_2TRI
             {
                 lblJogadaSelecionada.Text = string.Format(
                 "Jogada Selecionada: {0}",
-                jogadas[jogadaSelecionada - 1] 
+                jogadaSelecionada.ToString()
                 //subtrai um para coincidir com os valores da Array jogadas
             ); 
             }
@@ -80,74 +89,74 @@ namespace CorrecaoProva_2TRI
             lblDerrotas.Text = "Derrotas: " + derrotas;
         }
 
-        private void ExibirJogada(string nomeJogador, int jogada)
+        private void ExibirJogada(string nomeJogador, Jogadas jogada)
         {
             rtbResultado.AppendText(
                 string.Format(
                     "{0}: {1} \n",
                     nomeJogador,
-                    jogadas[jogada - 1]
+                    jogada.ToString().ToLower().First().ToString().ToUpper() + jogada.ToString().Substring(1)
                 )
             );
         }
 
         private void Jogar()
         {
-            Random random = new Random();
-            int jogadaComputador = random.Next(1, jogadas.Length + 1);
+            Random rnd = new Random();
+            Jogadas jogadaComputador = (Jogadas)rnd.Next(1, jogadas.Length + 1);
 
             ExibirJogada("Jogador", jogadaSelecionada);
             ExibirJogada("Computador", jogadaComputador);
 
-            if (jogadaSelecionada == 1)//Pedra
+            if (jogadaSelecionada == Jogadas.Pedra)//Pedra
             {
-                if (jogadaComputador == 1) //Pedra
+                if (jogadaComputador == Jogadas.Pedra) //Pedra
                 {
                     // Empate
                     Empate();
                 }
-                else if (jogadaComputador == 2) //Papel
+                else if (jogadaComputador == Jogadas.Papel) //Papel
                 {
                     // Derrota
                     Derrota();
                 }
-                else if (jogadaComputador == 3) //Tesoura
+                else if (jogadaComputador == Jogadas.Tesoura) //Tesoura
                 {
                     // Vitória
                     Vitoria();
                 }
             }
-            else if (jogadaSelecionada == 2)//Papel
+            else if (jogadaSelecionada == Jogadas.Papel)//Papel
             {
-                if (jogadaComputador == 1) //Pedra
+                if (jogadaComputador == Jogadas.Pedra) //Pedra
                 {
                     // Vitória
                     Vitoria();
                 }
-                else if (jogadaComputador == 2) //Papel
+                else if (jogadaComputador == Jogadas.Papel) //Papel
                 {
                     // Empate
                     Empate();
                 }
-                else if (jogadaComputador == 3) //Tesoura
+                else if (jogadaComputador == Jogadas.Tesoura) //Tesoura
                 {
                     // Derrota
                     Derrota();
                 }
             }
-            else if (jogadaSelecionada == 3)//Tesoura
+            else if (jogadaSelecionada == Jogadas.Tesoura)//Tesoura
             {
-                if (jogadaComputador == 1) //Pedra
+                if (jogadaComputador == Jogadas.Pedra) //Pedra
                 {
                     // Derrota
                     Derrota();
                 }
-                else if (jogadaComputador == 2) //Papel
+                else if (jogadaComputador == Jogadas.Papel) //Papel
                 {
                     // Vitória
                     Vitoria();
                 }
-                else if (jogadaComputador == 3) //Tesoura
+                else if (jogadaComputador == Jogadas.Tesoura) //Tesoura
                 {
                     // Empate
                     Empate();
@@ -178,21 +187,21 @@ namespace CorrecaoProva_2TRI
 
         private void btnPedra_Click(object sender, EventArgs e)
         {
-            jogadaSelecionada = 1;
+            jogadaSelecionada = Jogadas.Pedra;
 
             AtualizarJogadaSelecionada();
         }
 
         private void btnPapel_Click(object sender, EventArgs e)
         {
-            jogadaSelecionada = 2;
+            jogadaSelecionada = Jogadas.Papel;
 
             AtualizarJogadaSelecionada();
         }
 
         private void btnTesoura_Click(object sender, EventArgs e)
         {
-            jogadaSelecionada = 3;
+            jogadaSelecionada = Jogadas.Tesoura;
 
             AtualizarJogadaSelecionada();
         }
